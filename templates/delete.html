@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% block head %}
-    <title>update</title>
+    <title>delete</title>
 {% endblock head %}
 
 {% block body %}
     <div class="content">
-        <form action="/update/{{ task.id }}" method="POST">
+        <form action="/delete/{{ task.id }}" method="POST">
             <input type="text" name="content" id="content" value="{{ task.content }}">
-            <input type="submit" value="Update task">
+            <input type="submit" value="Delete task">
         </form>
     </div>
 {% endblock body %}

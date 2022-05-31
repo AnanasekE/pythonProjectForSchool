@@ -27,7 +27,7 @@ def index():
         return render_template('index.html', tasks=tasks)
 
 
-@app.route('/update/<int:id>', methods=['GET', 'POST'])
+@app.route('/update/<int:id>', methods=['POST', 'GET'])
 def update(id):
     task = Task.query.get_or_404(id)
     if request.method == 'POST':
@@ -36,6 +36,17 @@ def update(id):
         return redirect('/')
     else:
         return render_template('update.html', task=task)
+
+
+@app.route('/delete/<int:id>', methods=['POST', 'GET'])
+def delete(id):
+    task = Task.query.get_or_404(id)
+    if request.method == 'POST':
+        db.session.delete(task)
+        db.session.commit()
+        return redirect('/')
+    else:
+        return render_template('delete.html', task=task)
 
 
 if __name__ == '__main__':
